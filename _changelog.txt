@@ -1,0 +1,16 @@
+<h2>Changelog:</h2>
+
+<strong>1.0.0 - 14.01.2011</strong>
+- Addon in ko_debug umbenannt
+- Dateien zu UTF8 geändert
+- Anpassungen an Redaxo 4
+- Krumo integriert
+
+
+
+<strong>03.11.2007</strong>
+- DebugOut-Funktion überarbeitet; Trennung nach Array und normaler Variable aufgehoben  
+- Kurzform DBO() eingefügt
+
+<strong>10.09.2006</strong>
+first release
