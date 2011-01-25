@@ -8,62 +8,42 @@
 
 // Parameter
 $Basedir = dirname(__FILE__);
+$func = rex_request('func', 'string');
+$subpage = rex_request('subpage', 'string');
+
+if (!isset ($func))
+{
+  $func = '';
+}
+
+if (!isset ($subpage))
+{
+  $subpage = '';
+}
+
+//------------------------------> Main
 
 
 // Include Header and Navigation
 include $REX['INCLUDE_PATH'].'/layout/top.php';
 
+// Build Subnavigation
+$subpages = array (
+    array ('','Startseite'),
+    array ('settings','Konfiguration')
+  );
 
-rex_title('Debug Addon');
-
-
-?>
-
-<h1>Anleitung</h1>
-
-<h2>Features:</h2>
-<p>Mit Hilfe des Debug Addon können Variablen-, Array- oder Objektinhalte in <br />
-zum Teil formatierter Form ausgegeben werden.</p>
-
-<br /><br />
-
-<h2>Beispiele:</h2>
-<p>
-$foo = 'bar';<br />
-DebugOut($foo);<br />
-Ausgabe: <br />
-<span style="font-weight:bold;">DEBUGOUT:</span> bar<br /><br />
-
-$foo = array('bar','example');<br />
-DebugOut($foo);<br />
-Ausgabe: <br />
-<span style="font-weight:bold;">DEBUGOUT:</span> 0 =&#62; bar<br />
-1 =&#62; example<br /><br /><br />
-</p>
-
-<pre>/**
- * DebugOut gibt Variableninfos aus
- *
- * Aufrufbeispiel:
- * $a = array(1, 2, array("a", "b", "c"));
- * DebugOut($a);
- * 
- * @param  mixed  auszugebene Variablendaten
- * @param  mixed  Anweisungen fuer die switch-Abfrage
- *                'sql' - speziell formatierte Ausgabe
- * @param  bool   0 (default): Ausgabe erfolgt per var_export()
- *                1: Ausgabe erfolgt per var_dump()
- */</pre>
+rex_title('Debug Addon', $subpages);
 
 
-<br /><br />
-<?php
-
-$file = '../krumo/README'; 
-
-echo str_replace( '+', '&nbsp;&nbsp;+', nl2br( file_get_contents( dirname( __FILE__) .'/'. $file)));
-
-
+switch ($subpage){
+    
+    case 'settings':
+        require $Basedir .'/settings.inc.php';
+    break;
+    default:
+        require $Basedir .'/start.inc.php';
+}
 
 
 // Include Footer 

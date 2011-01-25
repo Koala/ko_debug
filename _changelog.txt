@@ -1,5 +1,11 @@
 <h2>Changelog:</h2>
 
+
+<strong>1.0.1 - 25.01.2011</strong>
+- Settings anlegen vorbereitet
+- Dummyfunktionen angelegt
+
+
 <strong>1.0.0 - 14.01.2011</strong>
 - Addon in ko_debug umbenannt
 - Dateien zu UTF8 geändert

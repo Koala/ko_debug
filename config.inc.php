@@ -22,8 +22,58 @@ $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 // $REX['ADDON']['supportpage'][$mypage] = "";
 
 // add default perm for accessing the addon to user-administration
-$REX['PERM'][] = 'debug[]';
+$REX['PERM'][] = 'ko_debug[]';
+
+require_once dirname(__FILE__) .'/settings.inc.php';
 
 
-include_once ('functions/function_debug.inc.php');
-include_once ('krumo/class.krumo.php');
+if ($REX['ADDON']['settings']['ko_debug']['debug']) {
+  include_once ('functions/function_debug.inc.php');
+} else {
+  /**
+   * Dummyfunktion
+   * 
+   * Wenn Debug-Out deaktiviert wurde, so gibt es mit 
+   * dieser Funktion keine Fehlermeldung bezüglich nicht 
+   * vorhandener Funktionen.
+   */
+  function Debug_Out() {
+    return true;
+  }
+  /**
+   * Dummyfunktion
+   * 
+   * Wenn Debug-Out deaktiviert wurde, so gibt es mit 
+   * dieser Funktion keine Fehlermeldung bezüglich nicht 
+   * vorhandener Funktionen.
+   */
+  function DBO() {
+    return true;
+  }
+  /**
+   * Dummyfunktion
+   * 
+   * Wenn Debug-Out deaktiviert wurde, so gibt es mit 
+   * dieser Funktion keine Fehlermeldung bezüglich nicht 
+   * vorhandener Funktionen.
+   */
+  function DebugOut() {
+    return true;
+  }
+}
+
+
+if ($REX['ADDON']['settings']['ko_debug']['krumo']) {
+  include_once ('krumo/class.krumo.php');
+} else {
+  /**
+   * Dummyfunktion
+   * 
+   * Wenn krumo deaktiviert wurde, so gibt es mit 
+   * dieser Funktion keine Fehlermeldung bezüglich nicht 
+   * vorhandener Funktionen.
+   */
+  function krumo() {
+    return true;
+  }
+}
