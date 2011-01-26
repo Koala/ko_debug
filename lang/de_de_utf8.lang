@@ -1,0 +1,15 @@
+# addon:ko_debug de_de_utf8
+
+ko_debug_name = ko_Debug
+ko_debug_settings = Einstellungen
+ko_debug_debug = Debug-Funktion
+ko_debug_krumo = Krumo-Klasse
+ko_debug_dir = Ordner
+ko_debug_save = Einstellungen speichern
+ko_debug_saved = Die Einstellungen wurden gespeichert.
+ko_debug_error = Es ist ein Fehler aufgetreten.
+ko_debug_aktivieren = aktivieren
+ko_debug_deaktivieren = deaktivieren
+
+ko_debug_install_perm_settings = Die Datei "settings.inc.php" benötigt Schreibrechte!
+ko_debug_install_perm_dir = Der Ordner "/redaxo/include/{0}/" benötigt Schreibrechte!

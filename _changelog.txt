@@ -1,9 +1,9 @@
 <h2>Changelog:</h2>
 
 
-<strong>1.0.1 - 25.01.2011</strong>
-- Settings anlegen vorbereitet
-- Dummyfunktionen angelegt
+<strong>1.1.0 - 26.01.2011</strong>
+- Settings können angelegt werden (de-/aktivieren der einzelnen Debug-Funktionen/Klassen)
+- Dummyfunktionen angelegt (wenn Debug-Funktion deaktiviert, gibt es bei Verwendung der Funktionen keine Fehlermeldung)
 
 
 <strong>1.0.0 - 14.01.2011</strong>

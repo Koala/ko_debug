@@ -5,62 +5,47 @@
 
 if (rex_post('func', 'string') == 'update') 
 {
-  require_once $REX['INCLUDE_PATH'] .'/addons/developer/classes/class.rex_developer_manager.inc.php';
+  require_once $REX['INCLUDE_PATH'] .'/addons/ko_debug/classes/class.ko_debug_manager.inc.php';
 
   $settings = (array)rex_post('settings','array',array());
-  $settings['dir'] = trim($settings['dir'],'/');
   $msg = '';
   
-  if ($settings['templates'] || $settings['modules'] || $settings['actions'])
-  {
-    $msg = rex_developer_manager::checkDir($settings['dir']);
-    if ($msg != '')
-    {
-      echo rex_warning($msg);
-    }
-  }
   if ($msg == '')
   {
     $old_dir = $REX['ADDON']['settings']['developer']['dir'];
-    if (rex_developer_manager::saveSettings($settings))
+    if (ko_debug_manager::saveSettings($settings) === FALSE)
     {
-      echo rex_info($I18N->msg('developer_saved'));
-      if ($old_dir != $settings['dir'] || (!$settings['templates'] && !$settings['modules'] && !$settings['actions']))
-      {
-        rex_developer_manager::deleteDir($old_dir);
-      }
-      else
-      {
-        rex_developer_manager::deleteFiles(true, true);
-      }
-    }
-    else
-    {
-      echo rex_warning($I18N->msg('developer_error'));
+      echo rex_warning($I18N->msg('ko_debug_error'));
     }
   }
 }
 
-$templates = '';
-if ($REX['ADDON']['settings']['developer']['templates']=="1")
-  $templates = ' checked="checked"';
-$modules = '';
-if ($REX['ADDON']['settings']['developer']['modules']=="1")
-  $modules = ' checked="checked"';
-$actions = '';
-if ($REX['ADDON']['settings']['developer']['actions']=="1")
-  $actions = ' checked="checked"';
+$debug = '';
+if ($REX['ADDON']['settings']['ko_debug']['debug'] == '1') {
+  $debug = ' checked="checked"';
+  $aktvieren_debug = $I18N->msg('ko_debug_debug').' '.$I18N->msg('ko_debug_deaktivieren');
+} else {
+  $aktvieren_debug = $I18N->msg('ko_debug_debug').' '.$I18N->msg('ko_debug_aktivieren');
+}
+$krumo = '';
+if ($REX['ADDON']['settings']['ko_debug']['krumo'] == '1') {
+  $krumo = ' checked="checked"';
+  $aktvieren_krumo = $I18N->msg('ko_debug_krumo').' '.$I18N->msg('ko_debug_deaktivieren');
+} else {
+  $aktvieren_krumo = $I18N->msg('ko_debug_krumo').' '.$I18N->msg('ko_debug_aktivieren');
+}
+
 
 echo '
 
 <div class="rex-addon-output">
 
-<h2 class="rex-hl2">'. $I18N->msg('developer_settings') .'</h2>
+<h2 class="rex-hl2">'. $I18N->msg('ko_debug_settings') .'</h2>
 
 <div class="rex-area">
   <div class="rex-form">
 	
-  <form action="index.php?page=ko_debug" method="post">
+  <form action="index.php?page=ko_debug&subpage=settings" method="post">
 
 		<fieldset class="rex-form-col-1">
       <div class="rex-form-wrapper">
@@ -68,38 +53,23 @@ echo '
         
         <div class="rex-form-row">
           <p class="rex-form-checkbox rex-form-label-right">
-            <input type="hidden" name="settings[templates]" value="0" />
-            <input class="rex-form-checkbox" type="checkbox" id="templates" name="settings[templates]" value="1"'.$templates.' />
-            <label for="templates">'.$I18N->msg('developer_templates').'</label>
+            <input type="hidden" name="settings[debug]" value="0" />
+            <input class="rex-form-checkbox" type="checkbox" id="debug" name="settings[debug]" value="1"'.$debug.' />
+            <label for="debug">'.$aktvieren_debug.'</label>
           </p>
         </div>
         
         <div class="rex-form-row">
           <p class="rex-form-checkbox rex-form-label-right">
-            <input type="hidden" name="settings[modules]" value="0" />
-            <input class="rex-form-checkbox" type="checkbox" id="modules" name="settings[modules]" value="1"'.$modules.' />
-            <label for="modules">'.$I18N->msg('developer_modules').'</label>
-          </p>
-        </div>
-        
-        <div class="rex-form-row">
-          <p class="rex-form-checkbox rex-form-label-right">
-            <input type="hidden" name="settings[actions]" value="0" />
-            <input class="rex-form-checkbox" type="checkbox" id="actions" name="settings[actions]" value="1"'.$actions.' />
-            <label for="actions">'.$I18N->msg('developer_actions').'</label>
-          </p>
-        </div>
-        
-        <div class="rex-form-row">
-          <p class="rex-form-text">
-            <label for="dir">'.$I18N->msg('developer_dir').':</label>
-            /redaxo/include/ <input type="text" id="dir" name="settings[dir]" value="'.$REX['ADDON']['settings']['developer']['dir'].'" />  
+            <input type="hidden" name="settings[krumo]" value="0" />
+            <input class="rex-form-checkbox" type="checkbox" id="krumo" name="settings[krumo]" value="1"'.$krumo.' />
+            <label for="krumo">'.$aktvieren_krumo.'</label>
           </p>
         </div>
         
         <div class="rex-form-row">
 				  <p>
-            <input type="submit" class="rex-form-submit" name="FUNC_UPDATE" value="'.$I18N->msg('developer_save').'" />
+            <input type="submit" class="rex-form-submit" name="FUNC_UPDATE" value="'.$I18N->msg('ko_debug_save').'" />
           </p>
 			  </div>
         
