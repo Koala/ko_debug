@@ -27,7 +27,18 @@ $REX['PERM'][] = 'ko_debug[]';
 require_once dirname(__FILE__) .'/settings.inc.php';
 
 
-if ($REX['ADDON']['settings']['ko_debug']['debug']) {
+if (!isset ($_SESSION)) {
+	session_start();
+}
+if (!isset ($_SESSION[$REX['INSTNAME']])) {
+  $_SESSION = $REX['INSTNAME'];
+}
+
+
+if ($REX['ADDON']['settings']['ko_debug']['debug'] && 
+    isset($REX['INSTNAME']) &&
+    isset($_SESSION[$REX['INSTNAME']]['UID']) &&
+    $_SESSION[$REX['INSTNAME']]['UID'] == 1) {
   include_once ('functions/function_debug.inc.php');
 } else {
   /**
@@ -63,7 +74,10 @@ if ($REX['ADDON']['settings']['ko_debug']['debug']) {
 }
 
 
-if ($REX['ADDON']['settings']['ko_debug']['krumo']) {
+if ($REX['ADDON']['settings']['ko_debug']['krumo'] && 
+    isset($REX['INSTNAME']) &&
+    isset($_SESSION[$REX['INSTNAME']]['UID']) &&
+    $_SESSION[$REX['INSTNAME']]['UID'] == 1) {
   include_once ('krumo/class.krumo.php');
 } else {
   /**
