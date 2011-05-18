@@ -4,6 +4,7 @@
 <strong>1.1.1 - 18.05.2011</strong>
 - Im Frontend werden nur noch Debugmeldungen ausgegeben, wenn man gleichzeitig im Backend angemeldet ist.
   Der normale Benutzer bekommt dadurch keinerlei Debug-Meldungen mehr zu sehen.
+  http://www.redaxo.org/de/forum/post92510.html#p92510
 
 <strong>1.1.0 - 26.01.2011</strong>
 - Settings können angelegt werden (de-/aktivieren der einzelnen Debug-Funktionen/Klassen)
