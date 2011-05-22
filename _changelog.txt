@@ -1,6 +1,11 @@
 <h2>Changelog:</h2>
 
 
+<strong>1.1.2 - 22.05.2011</strong>
+- rex_hasBackendSession() wird zur Überprüfung des Benutzers im Backend verwendet
+  (http://www.redaxo.org/de/forum/post92531.html#p92531)
+- kleine Sicherungsfunktion für Sessions eingebaut
+  
 <strong>1.1.1 - 18.05.2011</strong>
 - Im Frontend werden nur noch Debugmeldungen ausgegeben, wenn man gleichzeitig im Backend angemeldet ist.
   Der normale Benutzer bekommt dadurch keinerlei Debug-Meldungen mehr zu sehen.

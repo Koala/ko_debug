@@ -17,7 +17,7 @@ if ($REX['REDAXO']) {
 $REX['ADDON']['page'][$mypage] = $mypage;    
 $REX['ADDON']['name'][$mypage] = 'ko_Debug';
 $REX['ADDON']['perm'][$mypage] = 'ko_debug[]';
-$REX['ADDON']['version'][$mypage] = "1.1.1";
+$REX['ADDON']['version'][$mypage] = "1.1.2";
 $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 // $REX['ADDON']['supportpage'][$mypage] = "";
 
@@ -25,20 +25,17 @@ $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 $REX['PERM'][] = 'ko_debug[]';
 
 require_once dirname(__FILE__) .'/settings.inc.php';
+include_once ('functions/function_session_check.inc.php');
 
 
 if (!isset ($_SESSION)) {
 	session_start();
 }
-if (!isset ($_SESSION[$REX['INSTNAME']])) {
-  $_SESSION = $REX['INSTNAME'];
-}
+checkInitiatedSession();
 
 
 if ($REX['ADDON']['settings']['ko_debug']['debug'] && 
-    isset($REX['INSTNAME']) &&
-    isset($_SESSION[$REX['INSTNAME']]['UID']) &&
-    $_SESSION[$REX['INSTNAME']]['UID'] == 1) {
+  rex_hasBackendSession() == 1) {
   include_once ('functions/function_debug.inc.php');
 } else {
   /**
@@ -75,9 +72,7 @@ if ($REX['ADDON']['settings']['ko_debug']['debug'] &&
 
 
 if ($REX['ADDON']['settings']['ko_debug']['krumo'] && 
-    isset($REX['INSTNAME']) &&
-    isset($_SESSION[$REX['INSTNAME']]['UID']) &&
-    $_SESSION[$REX['INSTNAME']]['UID'] == 1) {
+    rex_hasBackendSession() == 1) {
   include_once ('krumo/class.krumo.php');
 } else {
   /**
