@@ -17,7 +17,7 @@ if ($REX['REDAXO']) {
 $REX['ADDON']['page'][$mypage] = $mypage;    
 $REX['ADDON']['name'][$mypage] = 'ko_Debug';
 $REX['ADDON']['perm'][$mypage] = 'ko_debug[]';
-$REX['ADDON']['version'][$mypage] = "1.1.2";
+$REX['ADDON']['version'][$mypage] = "1.1.3";
 $REX['ADDON']['author'][$mypage] = "Sven (Koala) Eichler";
 // $REX['ADDON']['supportpage'][$mypage] = "";
 
@@ -72,7 +72,8 @@ if ($REX['ADDON']['settings']['ko_debug']['debug'] &&
 
 
 if ($REX['ADDON']['settings']['ko_debug']['krumo'] && 
-    rex_hasBackendSession() == 1) {
+    rex_hasBackendSession() == 1 &&
+    version_compare(PHP_VERSION, '5.0.0', '>=')) {
   include_once ('krumo/class.krumo.php');
 } else {
   /**

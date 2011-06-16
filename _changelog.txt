@@ -1,6 +1,9 @@
 <h2>Changelog:</h2>
 
 
+<strong>1.1.3 - 16.06.2011</strong>
+- Krumo funktioniert nur mit PHP 5 -> Versionsabfrage eingefügt
+
 <strong>1.1.2 - 22.05.2011</strong>
 - rex_hasBackendSession() wird zur Überprüfung des Benutzers im Backend verwendet
   (http://www.redaxo.org/de/forum/post92531.html#p92531)
