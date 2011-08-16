@@ -1,7 +1,7 @@
 <?php
 /**
  * Debug Addon 
- * @author sven[ät]koalshome[punkt]de Sven Eichler
+ * @author sven[ät]koalashome[punkt]de Sven Eichler
  * @package redaxo4
  */
 
